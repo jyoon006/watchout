@@ -7,8 +7,13 @@ var container = d3.select("body").append("svg").attr("height", "600px").attr("wi
 
 //drag function
 var drag = d3.behavior.drag()
-  .on('dragstart', function() {  })
-  .on('drag', function() { player.attr('cx', d3.event.x).attr('cy', d3.event.y);})
+  .on('dragstart', function() {})
+  .on('drag', function() {
+    //d3.event.x // d3.event.y
+    player.attr('cx', d3.event.x)
+
+    .attr('cy', d3.event.y);
+  })
   .on('dragend', function() {});
 
 
@@ -16,22 +21,32 @@ var player = container.append("circle").attr("cx" , "300").attr("cy", "300").att
               .attr("class", "player").call(drag);
 
 
+var collideCheck = function(){
+  return function() {
+    var enemyX = Math.floor(d3.select(this).attr('cx'));
+    var enemyY = Math.floor(d3.select(this).attr('cy'));
+    var playerX = Math.floor(player.attr('cx'));
+    var playerY = Math.floor(player.attr('cy'));
+    console.log("enemy: " + enemyX + "," + enemyY);
+  }
+}
 
 
 
-var update = function(data){
-  console.log('running update');
+var update = function(data){  //change function name
   // data join
   var enemies = container.selectAll(".enemy").data(data);
 
   // update & transition
-  enemies.transition().duration(1000)
+  enemies.transition().duration(2000)
+    // collision detection
+      // player.cx, player.cy
+      //this.cx, this.cy
+    .tween("collideCheck", collideCheck)
     .attr("cx", function(d) {
-      console.log(d[0])
       return Math.random() * 600;
     })
     .attr("cy", function(d) {
-      console.log(d[1])
       return Math.random() * 600;
     })
     .attr("r", "20");
@@ -64,9 +79,9 @@ var update = function(data){
 
 
 // initial setup
-update([1,2,3,4,5]);
+update([1]);
 
-//movement loop
+// movement loop
 setInterval(function() {
-  update([1,2,3,4,5]);
-}, 700);
+  update([1]);
+}, 1500);
