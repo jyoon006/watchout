@@ -8,9 +8,17 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-body{
+
+body {
   position: relative;
+  background: url('pacmanbg.png') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+  width: auto;
 }
+
 .scoreboard {
   color: white;
   background-color: blue;
@@ -18,23 +26,18 @@ body{
   float: right;
 }
 
-.container {
-  background: url('http://wallpapercave.com/wp/f2KTKjr.png') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: 100% 100%;
-  background-color: grey;
+.boardBg {
+  width: auto;
+  height: auto;
 }
+
 
 .enemy {
   fill: blue;
 }
 
+
 .player {
-  
   position: absolute;
 }
 
-.update {
-}
