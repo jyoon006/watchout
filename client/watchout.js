@@ -19,7 +19,7 @@ var enemyImg = container.append('svg:defs');
     .attr("height", "1")
     .attr("patternContentUnits", "objectBoundingBox")
     .append("svg:image")
-    .attr("xlink:href", 'Clyde.gif')
+    .attr("xlink:href", 'img/Clyde.gif')
     .attr("width", "1")
     .attr("height", "1")
     .attr("preserveAspectRatio", "xMinYMin slice");
@@ -31,7 +31,7 @@ var enemyImg = container.append('svg:defs');
     .attr("height", "1")
     .attr("patternContentUnits", "objectBoundingBox")
     .append("svg:image")
-    .attr("xlink:href", 'Pacman.gif')
+    .attr("xlink:href", 'img/Pacman.gif')
     .attr("width", "1")
     .attr("height", "1")
     .attr("preserveAspectRatio", "xMinYMin slice");    

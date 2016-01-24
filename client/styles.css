@@ -9,9 +9,14 @@ html {
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: arcadeFont;
+  src: url('font/ARCADECLASSIC.TTF');
+}
+
 body {
   position: relative;
-  background: url('pacmanbg.png') no-repeat center center;
+  background: url('img/pacmanbg.png') no-repeat center center ;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -25,9 +30,8 @@ body {
   display: inline;
   background-color: transparent;
   width: auto;
-}
-
-.high .current .collisions {
+  font-size: 1.714em;
+  font-family: arcadeFont;
   text-align: center;
 }
 
