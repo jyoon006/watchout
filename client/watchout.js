@@ -5,10 +5,12 @@ var currentScore = 0;
 var totalCollisions = 0;
 
 //game stage
-var container = d3.select("body").append("svg")
-  .attr("height", "850")
-  .attr("width", "100%")
-  .attr("class", "container");
+var container = d3.select("body")
+  .append("svg")
+  .attr("height", "900")
+  .attr("width", screen.width)
+  .attr("class", "boardBg");
+
 
 var enemyImg = container.append('svg:defs');
   enemyImg.append("svg:pattern")
@@ -87,18 +89,22 @@ var collideCheck = function(){
     // get radius distance
     var radii = Math.pow((enemyR + playerR), 2);
     // if distance <= radius distance, they are colliding
+
     if(distance <= radii) {
       collided = true;
+      
+      container.style("background-color", "rgba(255, 0, 0, 0.3)");
     }
   });
   if(collided){
     currentScore = 0;
     if(prevCollision != collided){
       totalCollisions++;
-      container.style("background-color", "blue");
+      
     }
     else {
-      container.style("background-color", "grey");
+      container.style("background-color", "transparent");
+
     }
   }
   prevCollision = collided;
