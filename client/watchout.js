@@ -6,9 +6,33 @@ var totalCollisions = 0;
 
 //game stage
 var container = d3.select("body").append("svg")
-  .attr("height", "600px")
-  .attr("width", "600px")
+  .attr("height", "850")
+  .attr("width", "100%")
   .attr("class", "container");
+
+var enemyImg = container.append('svg:defs');
+  enemyImg.append("svg:pattern")
+      .attr("id", "enemyImg")
+    .attr("width", "1")
+    .attr("height", "1")
+    .attr("patternContentUnits", "objectBoundingBox")
+    .append("svg:image")
+    .attr("xlink:href", 'Clyde.gif')
+    .attr("width", "1")
+    .attr("height", "1")
+    .attr("preserveAspectRatio", "xMinYMin slice");
+
+ var playerImg = container.append('svg:defs');
+  playerImg.append("svg:pattern")
+      .attr("id", "playerImg")
+    .attr("width", "1")
+    .attr("height", "1")
+    .attr("patternContentUnits", "objectBoundingBox")
+    .append("svg:image")
+    .attr("xlink:href", 'Pacman.gif')
+    .attr("width", "1")
+    .attr("height", "1")
+    .attr("preserveAspectRatio", "xMinYMin slice");    
 
 //drag function
 var drag = d3.behavior.drag()
@@ -21,24 +45,31 @@ var drag = d3.behavior.drag()
 
 // player object
 var player = container.append("circle")
-  .attr("cx" , "300")
-  .attr("cy", "300")
-  .attr("r", "15")
+  .attr("cx" , "50%")
+  .attr("cy", "50%")
+  .attr("r", "20")
   .attr("class", "player")
+  .style("fill", "red")
+  .style("fill", "url(#playerImg)")
   .call(drag);
+
+ 
 
 // enemies object
 var enemies = container.selectAll(".enemy")
-  .data(d3.range(15))
+  .data(d3.range(20))
   enemies.enter().append("circle")
     .attr("cx", function(d) {
-      return Math.random() * 600;
+      return Math.random() * screen.width - 100;
     })
     .attr("cy", function(d) {
-      return Math.random() * 600;
+      return Math.random() * 850;
     })
-    .attr("r", "15")
-    .attr("class", "enemy");
+    .attr("r", "20")
+    .attr("class", "enemy")
+    .style("fill", "url(#enemyImg)");
+    
+    
 
 var prevCollision = false;
 var collideCheck = function(){
@@ -76,12 +107,12 @@ var collideCheck = function(){
 var moveEnemies = function(){
   enemies.transition().duration(1000)
     .attr("cx", function(d) {
-      return Math.random() * 600;
+      return Math.random() * screen.width - 100;
     })
     .attr("cy", function(d) {
-      return Math.random() * 600;
+      return Math.random() * 850;
     })
-    .attr("r", "15")
+    .attr("r", "20")
     .each('end', function() {
       moveEnemies(d3.select(this));
     });
