@@ -19,11 +19,16 @@ body {
   width: auto;
 }
 
+
 .scoreboard {
   color: white;
-  background-color: blue;
-  width: 150px;
-  float: right;
+  display: inline;
+  background-color: transparent;
+  width: auto;
+}
+
+.high .current .collisions {
+  text-align: center;
 }
 
 .boardBg {
